@@ -16,7 +16,7 @@ public record InputSymbol(String name, long encoding) {
     public static List<InputSymbol> createInputAlphabet(String... names) {
         AtomicLong counter = new AtomicLong(0L);
         return Arrays.stream(names)
-                .map(name -> new InputSymbol(name, counter.incrementAndGet()))
+                .map(name -> new InputSymbol(name, counter.getAndIncrement()))
                 .toList();
     }
 

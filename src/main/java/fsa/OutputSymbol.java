@@ -14,7 +14,7 @@ public record OutputSymbol(String name, long encoding) {
     public static List<OutputSymbol> createOutputAlphabet(String... names) {
         AtomicLong counter = new AtomicLong(0L);
         return Arrays.stream(names)
-                .map(name -> new OutputSymbol(name, counter.incrementAndGet()))
+                .map(name -> new OutputSymbol(name, counter.getAndIncrement()))
                 .toList();
     }
 
