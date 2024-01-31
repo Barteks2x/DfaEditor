@@ -39,14 +39,18 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Button>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField fx:id="searchTextField" layoutY="5.0" onAction="#onSearchFieldAction" promptText="Wyszukaj..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </HBox>
-                        <HBox>
+                        <AnchorPane>
                            <children>
-                              <TextField fx:id="searchTextField" onAction="#onSearchFieldAction" promptText="Wyszukaj..." HBox.hgrow="ALWAYS" />
+                              <ChoiceBox fx:id="typeFilterChoice" layoutX="7.0" layoutY="-2.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
-                        </HBox>
-                        <ChoiceBox fx:id="typeFilterChoice" prefWidth="150.0" />
+                        </AnchorPane>
                         <TableView fx:id="graphList" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="idColumn" editable="false" maxWidth="10000.0" minWidth="20.0" prefWidth="30.0" text="Id" />
@@ -57,6 +61,11 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
+                        <AnchorPane VBox.vgrow="NEVER">
+                           <children>
+                              <Button layoutX="8.0" layoutY="1.0" mnemonicParsing="false" onAction="#onFillMissingEdges" text="Uzupełnij brakujące krawędzie" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </VBox>
                </children>
@@ -74,7 +83,7 @@
                                           <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                                              <children>
                                                 <Label text="Rodzaj grafu:" />
-                                                <TextField fx:id="graphTypeField" editable="false" />
+                                                <TextField fx:id="graphTypeField" />
                                                 <Label text="Nazwa" />
                                                 <TextField fx:id="graphNameField" promptText="Nazwa automatu" />
                                                 <Separator visible="false" />

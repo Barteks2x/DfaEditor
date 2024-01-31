@@ -40,9 +40,4 @@ public class MooreAutomaton extends DeterministicFiniteAutomaton {
         @SuppressWarnings("SuspiciousMethodCalls") OutputSymbol out = outputMap.get(state);
         return state.getName() + "/" + (out == null ? "-" : out.name());
     }
-
-    @Override
-    public void fillMissingEdges() {
-
-    }
 }

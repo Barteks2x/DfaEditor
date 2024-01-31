@@ -38,6 +38,7 @@ public class FsaEditorController {
     @FXML private TextField graphNameField;
     @FXML private TextField inputAlphabetField;
     @FXML private TextField outputAlphabetField;
+
     private final ObservableList<DatabaseObject> visibleDatabaseObjects = FXCollections.observableArrayList();
     private final List<DatabaseObject> allDatabaseObjects = new ArrayList<>();
 
@@ -109,7 +110,16 @@ public class FsaEditorController {
         graphCanvasController.mouseReleased(mouseEvent);
     }
 
-    @FXML private void onAddGraph(ActionEvent actionEvent) throws IOException {
+    @FXML private void onFillMissingEdges(ActionEvent actionEvent) {
+        for (DatabaseObject obj : visibleDatabaseObjects) {
+            if (obj instanceof StateMachineGraph stateMachine) {
+                stateMachine.fillMissingEdges();
+            }
+        }
+        graphCanvasController.updateDisplay();
+    }
+
+    @FXML private void onAddGraph(ActionEvent actionEvent) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Nazwa grafu");
         dialog.setHeaderText("Podaj nazwę grafu");

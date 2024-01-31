@@ -31,6 +31,21 @@ public abstract class DeterministicFiniteAutomaton extends Graph implements Stat
         return Collections.unmodifiableSet((Set<? extends DfaState>) super.getNodes());
     }
 
+    @Override
+    public void fillMissingEdges() {
+        for (DfaState node : getNodes()) {
+            Set<InputSymbol> remainingInputSymbols = new HashSet<>(getInputAlphabet());
+            for (Edge edge : node.getEdgesOut()) {
+                remainingInputSymbols.removeAll(node.getTransitions(edge));
+            }
+            for (InputSymbol remainingInputSymbol : remainingInputSymbols) {
+                Edge edge = new Edge(node, node);
+                node.addEdge(edge);
+                node.addTransitionInput(edge, remainingInputSymbol);
+            }
+        }
+    }
+
     public Optional<DfaState> getStartNode() {
         return getNodes().stream().filter(n -> n.getType().isInitial()).findAny();
     }

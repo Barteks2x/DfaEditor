@@ -47,9 +47,4 @@ public class MealyAutomaton extends DeterministicFiniteAutomaton {
                 .map(in -> in.name() + "/" + inToOutMapping.get(in).name())
                 .collect(Collectors.joining("\n"));
     }
-
-    @Override
-    public void fillMissingEdges() {
-
-    }
 }

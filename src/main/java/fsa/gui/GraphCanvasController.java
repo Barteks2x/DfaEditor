@@ -62,6 +62,10 @@ public class GraphCanvasController {
         updateGraphView();
     }
 
+    public void updateDisplay() {
+        updateGraphView();
+    }
+
     public void mouseMoved(MouseEvent e) {
         trackedMouseX = e.getX();
         trackedMouseY = e.getY();
