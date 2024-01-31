@@ -23,4 +23,10 @@ public record InputSymbol(String name, long encoding) {
     @Override public int hashCode() {
         return Long.hashCode(encoding);
     }
+
+
+    @Override
+    public String toString() {
+        return name + " (" + encoding + ")";
+    }
 }

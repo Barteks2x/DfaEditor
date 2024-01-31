@@ -85,7 +85,7 @@
                                                 <Label text="Rodzaj grafu:" />
                                                 <TextField fx:id="graphTypeField" />
                                                 <Label text="Nazwa" />
-                                                <TextField fx:id="graphNameField" promptText="Nazwa automatu" />
+                                                <TextField fx:id="graphNameField" onAction="#onGraphRename" promptText="Nazwa automatu" />
                                                 <Separator visible="false" />
                                                 <Label text="Alfabet wejściowy" />
                                                 <TextField fx:id="inputAlphabetField" editable="false" promptText="Alfabet wejściowy" />

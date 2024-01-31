@@ -200,6 +200,14 @@ public class FsaEditorController {
         updateVisibleDatabaseObjects();
     }
 
+    @FXML private void onGraphRename(ActionEvent event) {
+        DatabaseObject selected = graphList.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            selected.setName(graphNameField.getText());
+        }
+        graphList.refresh();
+    }
+
     private void updateVisibleDatabaseObjects() {
         ArrayList<DatabaseObject> prevSelected = new ArrayList<>(graphList.getSelectionModel().getSelectedItems());
         visibleDatabaseObjects.clear();
