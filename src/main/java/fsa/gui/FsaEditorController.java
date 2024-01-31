@@ -75,6 +75,9 @@ public class FsaEditorController {
             outSymbol.setItems(FXCollections.observableArrayList());
         }
         DatabaseObject selected = graphList.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            return;
+        }
         graphTypeField.setText(selected instanceof GenericGraph ? "Inny graf" :
                 selected instanceof MealyAutomaton ? "Mealy" : "Moore");
                 graphNameField.setText(selected.getName());
@@ -187,7 +190,10 @@ public class FsaEditorController {
 
     @FXML private void onRemoveGraph(ActionEvent actionEvent) {
         int selectedIndex = graphList.getSelectionModel().getSelectedIndex();
-        visibleDatabaseObjects.remove(selectedIndex);
+        DatabaseObject removed = visibleDatabaseObjects.remove(selectedIndex);
+        if (removed != null) {
+            allDatabaseObjects.remove(removed);
+        }
     }
 
     @FXML private void onSearchFieldAction(ActionEvent actionEvent) {
