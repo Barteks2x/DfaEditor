@@ -23,6 +23,10 @@ public class MealyAutomaton extends DeterministicFiniteAutomaton {
         return edge;
     }
 
+    public void setOutput(Edge edge, InputSymbol input, OutputSymbol output) {
+        Map<InputSymbol, OutputSymbol> inToOutMapping = outputMap.computeIfAbsent(edge, x -> new HashMap<>());
+        inToOutMapping.put(input, output);
+    }
 
     @Override
     public void addTransitionInput(Edge edge, InputSymbol input) {
@@ -32,9 +36,8 @@ public class MealyAutomaton extends DeterministicFiniteAutomaton {
     }
 
     @Override
-    public String getEdgeDisplayText(DfaState source, DfaState target) {
-        Edge edge = new Edge(source, target);
-        List<InputSymbol> transitions = source.getTransitions(edge);
+    public String getEdgeDisplayText(Edge edge) {
+        List<InputSymbol> transitions = ((DfaState) edge.source()).getTransitions(edge);
         if (transitions.isEmpty()) {
             return "-/-";
         }

@@ -27,9 +27,8 @@ public class MooreAutomaton extends DeterministicFiniteAutomaton {
     }
 
     @Override
-    public String getEdgeDisplayText(DfaState source, DfaState target) {
-        Edge edge = new Edge(source, target);
-        List<InputSymbol> transitions = source.getTransitions(edge);
+    public String getEdgeDisplayText(Edge edge) {
+        List<InputSymbol> transitions = ((DfaState) edge.source()).getTransitions(edge);
         if (transitions.isEmpty()) {
             return "?";
         }

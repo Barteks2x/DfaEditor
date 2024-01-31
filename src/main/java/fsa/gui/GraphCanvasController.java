@@ -297,7 +297,7 @@ public class GraphCanvasController {
 
     private String getDisplayText(Edge edge) {
         if (graph instanceof DeterministicFiniteAutomaton fsa) {
-            return fsa.getEdgeDisplayText((DfaState) edge.source(), (DfaState) edge.destination());
+            return fsa.getEdgeDisplayText(edge);
         }
         return "";
     }
@@ -533,13 +533,11 @@ public class GraphCanvasController {
     private void drawNodes(GraphicsContext g) {
         Color defaultColor = (Color) g.getStroke();
         graph.getNodes().forEach(n -> {
-            if (graph instanceof DeterministicFiniteAutomaton fsa) {
-                g.setStroke((n == hoveredNode || n == movingNode) ?
-                        HOVERED_COLOR :
-                        (n == fsa.getInitialState().orElse(null)) ? START_NODE_COLOR : defaultColor);
-            } else {
-                g.setStroke((n == hoveredNode || n == movingNode) ? HOVERED_COLOR : defaultColor);
-            }
+            Node startNode = graph.getStartNode().orElse(null);
+            g.setStroke((n == hoveredNode || n == movingNode) ?
+                    HOVERED_COLOR :
+                    n == startNode ? START_NODE_COLOR : defaultColor);
+
             drawNode(n, g);
         });
         g.setStroke(defaultColor);

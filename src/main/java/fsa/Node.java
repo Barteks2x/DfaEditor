@@ -27,6 +27,10 @@ public class Node {
         this.position = position;
     }
 
+    public void move(double dx, double dy) {
+        this.position = this.position.add(dx, dy);
+    }
+
     public Set<Edge> getEdgesOut() {
         return Collections.unmodifiableSet(edgesOut);
     }
@@ -47,9 +51,5 @@ public class Node {
     public void removeEdge(Edge edge) {
         edgesIn.remove(edge);
         edgesOut.remove(edge);
-    }
-
-    public void move(double dx, double dy) {
-        this.position = this.position.add(dx, dy);
     }
 }

@@ -31,7 +31,7 @@ public abstract class DeterministicFiniteAutomaton extends Graph implements Stat
         return Collections.unmodifiableSet((Set<? extends DfaState>) super.getNodes());
     }
 
-    public Optional<DfaState> getInitialState() {
+    public Optional<DfaState> getStartNode() {
         return getNodes().stream().filter(n -> n.getType().isInitial()).findAny();
     }
 
@@ -54,5 +54,5 @@ public abstract class DeterministicFiniteAutomaton extends Graph implements Stat
                 .collect(Collectors.toSet());
         return inputAlphabet.stream().filter(e -> !usedInputs.contains(e));    }
 
-    public abstract String getEdgeDisplayText(DfaState source, DfaState target);
+    public abstract String getEdgeDisplayText(Edge edge);
 }

@@ -10,7 +10,6 @@ public abstract class Graph extends DatabaseObject {
     }
 
     public Edge addEdge(Node fromNode, Node toNode) {
-        //noinspection SuspiciousMethodCalls
         if (!nodes.contains(fromNode) || !nodes.contains(toNode)) {
             throw new IllegalArgumentException("Edge nodes must already exist!");
         }
@@ -40,4 +39,6 @@ public abstract class Graph extends DatabaseObject {
     public String getNodeDisplayText(Node node) {
         return node.getName();
     }
+
+    public abstract Optional<? extends Node> getStartNode();
 }
